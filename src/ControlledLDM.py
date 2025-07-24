@@ -178,18 +178,17 @@ class ControlLDM(LatentDiffusion):
             self.embedding_manager = None
         if self.loss_alpha > 0 or self.loss_beta > 0 or self.embedding_manager:
             if embedding_manager_config.params.emb_type == 'ocr':
-                self.text_predictor = create_predictor().eval() # RecModel(rec_config).eval() # forward包括三个部分，x=backbone(x)、x=neck(x)、x=head(x)，return x
+                self.text_predictor = create_predictor().eval()
                 args = edict()
                 args.rec_image_shape = "3, 48, 320"
                 args.rec_batch_num = 6
                 args.rec_char_dict_path = './ocr_recog/ppocr_keys_v1.txt'
                 args.use_fp16 = self.use_fp16
-                self.cn_recognizer = TextRecognizer(args, self.text_predictor) # 3 parts, class TextRecognizer, 编写了get_recog_emb()函数
+                self.cn_recognizer = TextRecognizer(args, self.text_predictor) 
                 for param in self.text_predictor.parameters():
                     param.requires_grad = False
                 if self.embedding_manager:
-                    self.embedding_manager.recog = self.cn_recognizer #TODO:text_predictor前是否要加上前缀embedding_manager.recog？
-
+                    self.embedding_manager.recog = self.cn_recognizer 
     @torch.no_grad()
     def get_input(self, batch, k, bs=None, *args, **kwargs):
         if self.embedding_manager is None:  # fill in full caption
