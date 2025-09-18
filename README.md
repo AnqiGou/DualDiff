@@ -20,6 +20,7 @@ git clone https://www.modelscope.cn/datasets/iic/AnyWord-3M.git <br>
 <br>
 \# To get benchmark <br>
 git clone https://www.modelscope.cn/datasets/iic/AnyText-benchmark.git <br>
+download MARIO-Eval benchmark in https://drive.google.com/file/d/1_tnWtOqC6S4_D4z8bqcBQ9xKPlsoPB0B/view?pli=1 <br>
 
 # Inference
 python inference.py
