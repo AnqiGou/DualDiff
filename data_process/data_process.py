@@ -8,7 +8,6 @@ from PIL import Image, ImageDraw, ImageFont
 from torch.utils.data import Dataset, DataLoader
 from dataset_util import load, show_bbox_on_image
 
-
 phrase_list = [
     ', content and position of the texts are ',
     ', textual material depicted in the image are ',
@@ -21,7 +20,6 @@ phrase_list = [
     ', captions are ',
     ', content of the text in the graphic is '
 ]
-
 
 def insert_spaces(string, nSpace):
     if nSpace == 0:
