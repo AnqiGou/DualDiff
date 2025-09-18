@@ -29,7 +29,6 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model, _ = clip.load("./ViT-B-32.pt", device=device, jit=False)
 model.eval()
 
-# Prepare a transformation for the images
 image_transform = transforms.Compose([
     transforms.Resize((224, 224),interpolation=Image.BICUBIC),
     transforms.CenterCrop((224, 224)),
